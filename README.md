@@ -2,8 +2,8 @@
 A project written in Java to get old tweets, it bypass some limitations of Twitter Official API.
 
 ## Details
-Twitter Official API has the bother limitation of time constraints, you can't get older tweets than a week. Some tools provide access to older tweets but in the most of them you have to spend some money before.
-I was searching other tools to do this job but I didn't found it, so after analyze how Twitter Search through browser works I understand its flow. Basically when you enter on Twitter page a scroll loader starts, if you scroll down you start to get more and more tweets, all through calls to a JSON provider. After mimic we get the best advantage of Twitter Search on browsers, it can search the deepest oldest tweets.
+Twitter Official API limits the tweet search to a week. Some tools provide access to older tweets but in the most of them you have to spend some money.
+This tools mimics the tweet search performed on a browser, where there are no time limits.
 
 ## Components
 - **Tweet:** Model class to give some informations about a specific tweet.
@@ -28,6 +28,7 @@ I was searching other tools to do this job but I didn't found it, so after analy
   - setUntil (String. "yyyy-mm-dd"): An upper bound date to restrist search.
   - setQuerySearch (String): A query text to be matched.
   - setMaxTweets (int): The maximum number of tweets to be retrieved. If this number is unsetted or lower than 1 all possible tweets will be retrieved.
+  - optional - [output] (str): The name of the file where to store the results (default: *got_output.csv*)
   
 - **Main:** A simple class showing examples of use.
 
