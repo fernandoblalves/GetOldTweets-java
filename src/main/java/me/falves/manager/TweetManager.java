@@ -1,4 +1,4 @@
-package me.jhenrique.manager;
+package me.falves.manager;
 
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import me.jhenrique.model.Tweet;
+import me.falves.model.Tweet;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.HttpClient;
@@ -41,7 +41,7 @@ public class TweetManager {
 	 * @param until Upper bound date (yyyy-mm-dd)
 	 * @param scrollCursor (Parameter used by Twitter to do pagination of results)
 	 * @return JSON response used by Twitter to build its results
-	 * @throws Exception
+	 * @throws Exception In case something goes wrong; TODO: review this
 	 */
 	private static String getURLResponse(String username, String since, String until, String querySearch, String scrollCursor) throws Exception {
 		String appendQuery = "";
@@ -72,7 +72,7 @@ public class TweetManager {
 	 * @return A list of all tweets found
 	 */
 	public static List<Tweet> getTweets(TwitterCriteria criteria) {
-		List<Tweet> results = new ArrayList<Tweet>();
+		List<Tweet> results = new ArrayList<>();
 		
 		try {
 			String refreshCursor = null;

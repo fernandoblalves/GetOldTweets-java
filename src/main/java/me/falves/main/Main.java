@@ -1,8 +1,8 @@
-package me.jhenrique.main;
+package me.falves.main;
 
-import me.jhenrique.manager.TweetManager;
-import me.jhenrique.manager.TwitterCriteria;
-import me.jhenrique.model.Tweet;
+import me.falves.manager.TweetManager;
+import me.falves.manager.TwitterCriteria;
+import me.falves.model.Tweet;
 
 public class Main {
 	private static final String USERNAME = "Username: ";
@@ -12,13 +12,13 @@ public class Main {
 	private static final String HASHTAGS = "Hashtags: ";
 
 	public static void main(String[] args) {
-		/**
+		/*
 		 * Reusable objects
 		 */
-		TwitterCriteria criteria = null;
-		Tweet t = null;
+		TwitterCriteria criteria;
+		Tweet t;
 		
-		/**
+		/*
 		 *  Example 1 - Get tweets by username
 		 **/
 		
@@ -35,7 +35,7 @@ public class Main {
 		System.out.println(HASHTAGS + t.getHashtags());
 		System.out.println();
 		
-		/**
+		/*
 		 *  Example 2 - Get tweets by query search
 		 **/
 		criteria = TwitterCriteria.create()
@@ -53,7 +53,7 @@ public class Main {
 		System.out.println(HASHTAGS + t.getHashtags());
 		System.out.println();
 		
-		/**
+		/*
 		 *  Example 3 - Get tweets by username and bound dates
 		 **/
 		criteria = TwitterCriteria.create()
