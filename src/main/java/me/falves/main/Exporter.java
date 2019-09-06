@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import me.falves.manager.TweetManager;
 import me.falves.manager.TwitterCriteria;
@@ -20,6 +21,7 @@ public class Exporter {
 		}
 
 		String outFile = "got_output.csv";
+		List<Tweet> tweets;
 
 		if (args.length == 1 && args[0].equals("-h")) {
 			System.out.println("\nTo use this jar, you can pass the folowing attributes:");
@@ -59,7 +61,7 @@ public class Exporter {
 						criteria.setQuerySearch(parameterSplit[1]);
 						break;
 					case "maxtweets":
-						criteria.setMaxTweets(Integer.valueOf(parameterSplit[1]));
+						criteria.setMaxTweets(Integer.parseInt(parameterSplit[1]));
 						break;
 					case "output":
 						outFile = parameterSplit[1];
@@ -73,9 +75,13 @@ public class Exporter {
 				bw.newLine();
 
 				System.out.println("Searching... \n");
-				for (Tweet t : TweetManager.getTweets(criteria)) {
-					bw.write(String.format("%s;%s;%d;%d;\"%s\";%s;%s;%s;\"%s\";%s", t.getUsername(), sdf.format(t.getDate()), t.getRetweets(), t.getFavorites(), t.getText(), t.getGeo(), t.getMentions(), t.getHashtags(), t.getId(), t.getPermalink()));
-					bw.newLine();
+				tweets = (new TweetManager()).getTweets(criteria);
+
+				if(tweets != null) {
+					for (Tweet t : tweets) {
+						bw.write(String.format("%s;%s;%d;%d;\"%s\";%s;%s;%s;\"%s\";%s", t.getUsername(), sdf.format(t.getDate()), t.getRetweets(), t.getFavorites(), t.getText(), t.getGeo(), t.getMentions(), t.getHashtags(), t.getId(), t.getPermalink()));
+						bw.newLine();
+					}
 				}
 
 				bw.flush();
@@ -86,7 +92,5 @@ public class Exporter {
 				e.printStackTrace();
 			}
 		}
-
 	}
-
 }
